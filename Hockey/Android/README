@@ -45,7 +45,7 @@ Steps to integrate Hockey into your Android app:
 
 1. Open your "AndroidManifest.xml" and add the following line:
 
-  <activity android:name="net.hockeyapp.android.UpdateActivity" />
+  <activity android:name="net.hockeyapp.android.ui.activities.UpdateActivity" />
   
 2. Make sure that your app has permissions for the internet and for writing onto the SD card:
 
@@ -54,7 +54,7 @@ Steps to integrate Hockey into your Android app:
 
 3. Open your main activity and the following lines:
 
-import net.hockeyapp.android.CheckUpdateTask;
+import net.hockeyapp.android.async.CheckUpdateTask;
 
 public class MainActivity extends Activity {
   private CheckUpdateTask checkUpdateTask;

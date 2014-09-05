@@ -1,4 +1,4 @@
-package net.hockeyapp.android;
+package net.hockeyapp.android.handlers;
 
 /**
  * LICENSE INFORMATION
@@ -34,6 +34,10 @@ package net.hockeyapp.android;
  * Thomas Dohmke, thomas@dohmke.de
  **/
 
+import android.util.Log;
+
+import net.hockeyapp.android.constants.Constants;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -42,8 +46,6 @@ import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
 import java.util.UUID;
-
-import android.util.Log;
 
 public class ExceptionHandler implements UncaughtExceptionHandler {
   private UncaughtExceptionHandler defaultExceptionHandler;

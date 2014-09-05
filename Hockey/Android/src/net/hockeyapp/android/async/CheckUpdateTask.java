@@ -1,4 +1,4 @@
-package net.hockeyapp.android;
+package net.hockeyapp.android.async;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,8 +7,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.provider.Settings;
-import android.util.Base64;
 import android.util.Log;
+
+import net.hockeyapp.android.R;
+import net.hockeyapp.android.constants.Constants;
+import net.hockeyapp.android.helpers.ConnectionHelper;
+import net.hockeyapp.android.ui.activities.UpdateActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,9 +66,11 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.addRequestProperty("User-Agent", "Hockey/Android");
 
-            final String basicAuth = "Basic " + Base64.encodeToString("magnet:magnetwin123".getBytes(), Base64.NO_WRAP);
-            connection.setRequestProperty ("Authorization", basicAuth);
-
+            if ((Constants.getUserName() != null) && (Constants.getUserPassword() != null)) {
+                ConnectionHelper.setAutorizeParameters(connection,
+                        Constants.getUserName(),
+                        Constants.getUserPassword());
+            }
 
             connection.setRequestProperty("connection", "close");
             connection.connect();
@@ -160,5 +166,13 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray> {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public void setUserName(String username) {
+        Constants.setUserName(username);
+    }
+
+    public void setUserPassword(String userPassword) {
+        Constants.setUserPassword(userPassword);
     }
 }
