@@ -7,6 +7,9 @@
 //import net.hockeyapp.android.helpers.UpdateHelper;
 //
 //import test.server.com.testserverapplication.R;
+
+//<uses-permission android:name="android.permission.INTERNET" />
+//<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 //
 //
 //public class MyActivity extends Activity {
