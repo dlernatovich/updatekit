@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,23 +18,18 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import net.hockeyapp.android.R;
 import net.hockeyapp.android.constants.Constants;
 import net.hockeyapp.android.helpers.ConnectionHelper;
 import net.hockeyapp.android.ui.adapters.UpdateInfoAdapter;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
 
 public class UpdateActivity extends ListActivity {
-    public static int iconDrawableId = -1;
+    public static Drawable iconDrawableId = null;
 
     private DownloadFileTask downloadTask;
     private UpdateInfoAdapter adapter;
@@ -57,9 +53,9 @@ public class UpdateActivity extends ListActivity {
     }
 
     private void configureView() {
-        if (iconDrawableId != -1) {
+        if (iconDrawableId != null) {
             ImageView iconView = (ImageView) findViewById(R.id.icon_view);
-            iconView.setImageDrawable(getResources().getDrawable(iconDrawableId));
+            iconView.setImageDrawable(iconDrawableId);
         }
 
         TextView versionLabel = (TextView) findViewById(R.id.version_label);
